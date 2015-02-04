@@ -4,7 +4,7 @@ MEAN Machine
 <strong>MEAN Machine Book tutorial</strong>
 https://leanpub.com/mean-machine
 
-![MEAN Machine book](https://raw.githubusercontent.com/leongaban/awesome-test/master/assets/img/mean.png)
+![MEAN Machine book](https://raw.githubusercontent.com/leongaban/MEAN-machine/master/assets/img/mean.png)
 
 <p>A beginner's practical guide to the JavaScript stack.</p>
 
