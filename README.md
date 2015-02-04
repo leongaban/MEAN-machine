@@ -10,11 +10,9 @@ https://leanpub.com/mean-machine
 
 <p>Become an impressive Node.js, AngularJS, ExpressJS, and MongoDB developer</p>
 
-Demo: http://104.131.4.13:8615/
-
 - [x] MongoDB setup
 - [x] Express APIs
-- [ ] Node Oauth
+- [x] Node auth
 - [ ] Angular
 
 MEAN stack book by: http://scotch.io
