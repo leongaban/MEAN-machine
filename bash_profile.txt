@@ -1,0 +1,96 @@
+#  ---------------------------------------------------------------------------
+#  http://natelandau.com/my-mac-osx-bash_profile/
+#
+#  Description:  This file holds all my BASH configurations and aliases
+#
+#  Sections:
+#  1.   Environment Configuration
+#  2.   Make Terminal Better (remapping defaults and adding functionality)
+#  3.   File and Folder Management
+#  4.   Searching
+#  5.   Process Management
+#  6.   Networking
+#  7.   System Operations & Information
+#  8.   Web Development
+#  9.   Reminders & Notes
+#
+#  ---------------------------------------------------------------------------
+
+#   -------------------------------
+#   1.  ENVIRONMENT CONFIGURATION
+#   -------------------------------
+
+#   Change Prompt
+#   ------------------------------------------------------------
+	export PS1="___________________    | \w @ \h (\u) \n| ☞  "
+	export PS2="| ☞  "
+
+#   Set Paths
+#   ------------------------------------------------------------
+	export PATH=/usr/local/bin:$PATH
+
+#   Set Default Editor (change 'Nano' to the editor of your choice)
+#   ------------------------------------------------------------
+	export EDITOR=/usr/bin/sublime
+
+#   -----------------------------
+#   2.  MAKE TERMINAL BETTER
+#   -----------------------------
+	alias mean='cd NodeDallas/Projects/awesome-test'
+
+	alias cd..='cd ../'                         # Go back 1 directory level (for fast typers)
+	alias ..='cd ../'                           # Go back 1 directory level
+	alias ...='cd ../../'                       # Go back 2 directory levels
+	alias path='echo -e ${PATH//:/\\n}'         # path: Echo all executable Paths
+	alias show_options='shopt'                  # Show_options: display bash options settings
+	alias DT='tee ~/Desktop/terminalOut.txt'    # DT: Pipe content to file on MacOS Desktop
+
+#   lr:  Full Recursive Directory Listing
+#   ------------------------------------------
+	alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
+
+
+#   -------------------------------
+#   3.  FILE AND FOLDER MANAGEMENT
+#   -------------------------------
+	zipf () { zip -r "$1".zip "$1" ; }          # zipf:         To create a ZIP archive of a folder
+	alias numFiles='echo $(ls -1 | wc -l)'      # numFiles:     Count of non-hidden files in current dir
+	alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1mb size (all zeros)
+	alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
+	alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
+
+
+#   ---------------------------
+#   4.  SEARCHING
+#   ---------------------------
+	alias qfind="find . -name "                 # qfind:    Quickly search for file
+	ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
+	ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
+	ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
+
+
+#   ---------------------------
+#   5.  PROCESS MANAGEMENT
+#   ---------------------------
+
+#   memHogsTop, memHogsPs:  Find memory hogs
+#   -----------------------------------------------------
+    alias memHogsTop='top -l 1 -o rsize | head -20'
+    alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+
+
+#   ---------------------------
+#   6.  NETWORKING
+#   ---------------------------
+	alias myip='curl ip.appspot.com'                    	# myip:         Public facing IP Address
+
+
+#   ---------------------------------------
+#   8.  WEB DEVELOPMENT
+#   ---------------------------------------
+	alias apacheEdit='sudo edit /etc/httpd/httpd.conf'      # apacheEdit:       Edit httpd.conf
+	alias apacheRestart='sudo apachectl graceful'           # apacheRestart:    Restart Apache
+	alias editHosts='sudo edit /etc/hosts'                  # editHosts:        Edit /etc/hosts file
+	alias herr='tail /var/log/httpd/error_log'              # herr:             Tails HTTP error logs
+	alias apacheLogs="less +F /var/log/apache2/error_log"   # Apachelogs:   Shows apache error logs
+	httpHeaders () { /usr/bin/curl -I -L $@ ; }             # httpHeaders:      Grabs headers from web page

@@ -1,0 +1,55 @@
+GIT WORKFLOW
+
+sublime ~/.gitconfig
+
+1. git clone {repo name} //Always use the git@... option so you don't have to input your username/pw every time. 
+	//You'll have to generate ssh keys if you haven't already: https://help.github.com/articles/generating-ssh-keys
+
+2. git checkout -t -b {branch name}
+...use 'git status' at any time to see where you are in relation to master...
+
+3. make commits
+	git add {file name or .}
+	git commit -m "{commit message}" //Commit message must start with '[#story number]' to hook back into Pivotal. See here: https://www.pivotaltracker.com/he151153lp/api?version=v3#scm_post_commit_message_syntax
+	git push origin {branch name} /git s
+/pushes to a new remote branch. After this you just need to do git push
+
+4. git rebase master //to make sure your branch and master are in sync
+	If you have conflicts, fix conflicts, then:
+	git add .
+	git rebase --continue
+	
+	Push to remote branch:
+	git push -f //Force needed because history has been rewritten
+	
+...make commits...
+
+5. Ready to move your stuff into master
+	git rebase -i master //Lets you change your commit messages and squash all your commits from the feature branch into 1
+	git push -f
+
+6. Open a pull request in Github, merging your feature branch into master. This can be opened at any time, so others can review your code. Send out for review, and let someone else merge your code in.
+
+Idea is that you can release out of master at any time, and gives everyone an idea of what's going on.
+
+
+ADDITIONAL SETUP
+Here's a sample git config:
+user.name=
+user.email=
+core.editor=sublimetext
+alias.s=status
+alias.co=checkout
+alias.cm=commit
+alias.a=add
+alias.br=branch
+push.default=current
+url.https://.insteadof=git://
+
+Github has a GUI tool.
+
+Check this out for how to set up autocomplete and aliases (highly recommend)
+http://git-scm.com/book/en/Git-Basics-Tips-and-Tricks
+
+More on git commands:
+http://gitref.org/

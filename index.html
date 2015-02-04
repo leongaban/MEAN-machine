@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My First Angular Application!</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+    <style>
+        body { padding-top:50px; }
+    </style>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+    <script src="angularApp.js"></script>
+</head>
+
+<body class="container" ng-app="firstApp" ng-controller="mainController as main">
+    <div class="jumbotron">
+
+        <div class="form-group">
+            <label>Message</label>
+            <input type="text" class="form-control" ng-model="main.message">
+        </div>
+        
+        <h2>This is my message:</h2> {{ main.message }}
+
+    </div>
+</body>
+</html>
