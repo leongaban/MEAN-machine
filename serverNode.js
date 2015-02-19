@@ -4,11 +4,12 @@ var express    	= require('express'); 	   	// call express
 var app 	   	= express(); 			   	// define our app using express
 var bodyParser 	= require('body-parser');   // get body-parser
 var morgan 	   	= require('morgan'); 	   	// used to see requests
+var path 		= require('path');
 var mongoose   	= require('mongoose'); 	   	// for working w/ our database
 var User 		= require('./app/models/user');
-var Product 	= require('./app/models/product');
 var port 	   	= process.env.PORT || 8615; // set the port for our app
 var jwt 		= require('jsonwebtoken');	// JSON web tokens
+var config 	 	= require('./config');
 
 var superSecret = 'ilovescotchscotchyscotchscotch'; // JWT secret
 
@@ -108,25 +109,6 @@ apiRouter.use(function(req, res, next) {
 	}
 });
 
-// api/users
-apiRouter.route('/products')
-
-	// create a product (accessed at POST http://localhost:8615/api/products)
-	.post(function(req, res) {
-
-		var product = new Product();
-		product.productname = req.body.name;
-	})
-
-	// get all products (access at GET http://localhost:8615/api/products)
-	.get(function(req, res) {
-		Product.find(function(err, products) {
-			if (err) return res.send(err);
-
-			res.json(products);
-		})
-});
-
 apiRouter.route('/users')
 
 	// create a user (accessed at POST http://localhost:8615/api/users)
@@ -218,23 +200,6 @@ apiRouter.get('/me', function(req, res) {
 	res.send(req.decoded);
 });
 
-// PUBLIC ROUTES ------------------------------
-app.get('/', function (req, res) {
-	res.sendFile(__dirname + '/index.html');
-});
-
-app.route('/login')
-	// show the form
-	.get(function (req, res) {
-		res.send('this is the login form');
-	})
-
-	// process the form
-	.post(function (req, res) {
-		console.log('processing');
-		res.send('processing the login form');
-	});
-
 
 // ADMIN ROUTES -------------------------------
 // route middleware that happens on every request
@@ -277,6 +242,27 @@ adminRouter.get('/posts', function(req, res) {
 });
 
 
+// PUBLIC ROUTES ------------------------------
+// set the public folder to serve public assets
+app.use(express.static(__dirname + '/public'));
+
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/views/index.html'));
+});
+
+app.route('/login')
+	// show the form
+	.get(function (req, res) {
+		res.send('this is the login form');
+	})
+
+	// process the form
+	.post(function (req, res) {
+		console.log('processing');
+		res.send('processing the login form');
+	});
+
+
 // REGISTER OUR ROUTES -------------------------------
 app.use('/api', apiRouter);
 app.use('/admin', adminRouter);
@@ -284,8 +270,8 @@ app.use('/admin', adminRouter);
 
 // START THE SERVER
 // =============================================================================
-app.listen(port);
-console.log('••• Magic happens on port ' + port + '! •••');
+app.listen(config.port);
+console.log('••• Magic happens on port ' + config.port + '! •••');
 
 
 

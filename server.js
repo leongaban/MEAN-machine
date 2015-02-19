@@ -1,9 +1,9 @@
 // get the things we need
-var express = require('express');
-var app 	= express();
-var path 	= require('path');
-var mongoose   	= require('mongoose');
-var config 	= require('./config');
+var express  = require('express');
+var app 	 = express();
+var path 	 = require('path');
+var mongoose = require('mongoose');
+var config 	 = require('./config');
 
 // connect to scotch,io's database
 mongoose.connect(config.database);
