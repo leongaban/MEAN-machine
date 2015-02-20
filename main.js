@@ -31,6 +31,7 @@ app.use(morgan('dev'));
 mongoose.connect('mongodb://node:noder@novus.modulusmongo.net:27017/Iganiq8o');
 // mongoose.connect('mongodb://leongaban:Gabandok712!@kahana.mongohq.com:10016/sandbox');
 
+
 // API ROUTES ------------------------
 var apiRoutes = require('./app/routes/api')(app, express);
 app.use('/api', apiRoutes);
@@ -38,11 +39,13 @@ app.use('/api', apiRoutes);
 var adminRouter = require('./app/routes/api')(app, express);
 app.use('/admin', adminRouter);
 
+
 // MAIN CATCHALL ROUTE ---------------
 // SEND USERS TO FRONTEND ------------
-// has to be registered after API ROUTES
+// has to be registered after API routes
 app.use(express.static(__dirname + '/public'));
 
+// Catch all for routes not handled by Node
 app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/views/index.html'));
 });

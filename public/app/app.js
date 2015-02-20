@@ -1,16 +1,24 @@
 /*global angular*/
 
 // name our angular app
-var app = angular.module('routerApp', ['ngRoute', 'routerRoutes', 'ngAnimate'])
+var app = angular.module('myApp', 
+	['ngRoute', 'routerRoutes', 'ngAnimate', 'stuffService'])
 
 // controller for ENTIRE site
-.controller('mainController', function() {
+.controller('mainController', function(Stuff) {
 
-	// bind this to vm (view-model)
 	var vm = this;
+	console.log(vm);
 
-	// define a basic variable
-	vm.bigMessage = 'A smooth sea never made a skilled sailor.';
+	// get all the stuff
+	Stuff.all()
+		// promise object
+		.success(function(data) {
+			// bind the data to a controller variable
+			// this comes from the stuffService
+			vm.stuff = data;
+			console.log(vm);
+		});
 })
 
 // home page specific controller
