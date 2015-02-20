@@ -1,5 +1,5 @@
-angular.module('stuffService', [])
-.factory('Stuff', function($http) {
+angular.module('userService', [])
+.factory('User', function($http) {
 
 	/*
 
@@ -11,19 +11,40 @@ angular.module('stuffService', [])
 	Node API                                   Angular Service
 	single user:   GET /api/users/:user_id     get(id)
 	list users:    GET /api/users              all()
-	create user:   POST /api/users             create(userData)
+	create user:   POST /api/users             postUser(userData)
 	update a user: PUT /api/users/:user_id     update(id, userData)
-	delete user:   DELETE /api/users/:user_id  delete(id)
+	delete user:   DELETE /api/users/:user_id  deleteUser(id)
 	   
 	*/
 
 	// create the object
-	var myFactory = {};
+	var userFactory = {};
 
-	// a function to get all the stuff
-	myFactory.all = function() {
-		return $http.get('/api/stuff');
+	// get a single user
+	userFactory.get = function(id) {
+		return $http.get('/api/users/' + id);
 	};
 
-	return myFactory;
+	// a function to get all the stuff
+	userFactory.all = function() {
+		return $http.get('/api/users');
+	};
+
+	// create a user
+	userFactory.create = function(userData) {
+		return $http.post('/api/users/', userData);
+	};
+
+	// update a user
+	userFactory.update = function(id, userData) {
+		return $http.put('/api/users/' + id, userData);
+	};
+
+	// delete a user
+	userFactory.delete = function(id) {
+		return $http.delete('/api/users/' + id);
+	};
+
+
+	return userFactory;
 });
