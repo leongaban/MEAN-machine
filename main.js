@@ -1,12 +1,12 @@
 // load the express package and create our app
 // REQUIRE PACKAGES --------------------------
-var express    	= require('express'); 	   	// call express
-var app 	   	= express(); 			   	// define our app using express
-var bodyParser 	= require('body-parser');   // get body-parser
-var morgan 	   	= require('morgan'); 	   	// used to see requests
-var mongoose   	= require('mongoose'); 	   	// for working w/ our database
-var config 	 	= require('./config');
-var path 		= require('path');
+var express    = require('express'); 	  // call express
+var app 	   = express(); 			  // define our app using express
+var bodyParser = require('body-parser');  // get body-parser
+var morgan 	   = require('morgan'); 	  // used to see requests
+var mongoose   = require('mongoose'); 	  // for working w/ our database
+var config 	   = require('./config');
+var path 	   = require('path');
 
 // var superSecret = 'ilovescotchscotchyscotchscotch'; // JWT secret
 

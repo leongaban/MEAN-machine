@@ -13,7 +13,7 @@ module.exports = function(app, express) {
 	var adminRouter = express.Router();	// for /admin
 	var apiRouter   = express.Router();	// for APIs
 
-	// route to authenticate a user (POST http://localhost:8615/api/authenticate)
+	// route to authenticate a user (POST http://localhost:9999/api/authenticate)
 	apiRouter.post('/authenticate', function(req, res) {
 
 		// find the user
@@ -86,7 +86,7 @@ module.exports = function(app, express) {
 
 	apiRouter.route('/users')
 
-		// create a user (accessed at POST http://localhost:8615/api/users)
+		// create a user (accessed at POST http://localhost:9999/api/users)
 		.post(function(req, res) {
 
 			// create a new instance of the User model
@@ -113,7 +113,7 @@ module.exports = function(app, express) {
 
 		})
 
-		// get all users (access at GET http://localhost:8615/api/users)
+		// get all users (access at GET http://localhost:9999/api/users)
 		.get(function(req, res) {
 			User.find(function(err, users) {
 				if (err) return res.send(err);
@@ -127,7 +127,7 @@ module.exports = function(app, express) {
 	apiRouter.route('/users/:user_id')
 
 		// get the user with that id
-		// (accessed at GET http://localhost:8615/api/users/:user_id)
+		// (accessed at GET http://localhost:9999/api/users/:user_id)
 		.get(function(req, res) {
 			User.findById(req.params.user_id, function(err, user) {
 				if (err) return res.send(err);

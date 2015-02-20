@@ -22,6 +22,7 @@ var app = angular.module('myApp',
 })
 
 // home page specific controller
+// ===================================================
 .controller('homeController', function() {
 	
 	var vm = this;
@@ -29,6 +30,7 @@ var app = angular.module('myApp',
 })
 
 // about page controller
+// ===================================================
 .controller('aboutController', function() {
 
 	var vm = this;
@@ -36,6 +38,7 @@ var app = angular.module('myApp',
 })
 
 // contact page controller
+// ===================================================
 .controller('contactController', function() {
 	
 	var vm = this;
