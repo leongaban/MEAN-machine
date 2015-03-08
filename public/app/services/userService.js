@@ -27,6 +27,7 @@ angular.module('userService', [])
 
 	// a function to get all the stuff
 	userFactory.all = function() {
+		console.log('get all users...');
 		return $http.get('/api/users');
 	};
 

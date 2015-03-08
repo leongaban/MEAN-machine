@@ -16,8 +16,9 @@ var app = angular.module('myApp',
 		.success(function(data) {
 			// bind the data to a controller variable
 			// this comes from the userService
-			vm.stuff = data;
-			console.log(vm);
+			console.log('success');
+			vm.users = data;
+			console.log(data);
 		});
 })
 

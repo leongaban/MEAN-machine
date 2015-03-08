@@ -7,7 +7,7 @@ var config 	 	= require('../../config');
 // super secret for creating tokens
 var superSecret = config.secret;
 
-module.exports = function(app, express) {
+module.exports  = function(app, express) {
 
 	// Routers
 	var adminRouter = express.Router();	// for /admin
@@ -117,7 +117,8 @@ module.exports = function(app, express) {
 		.get(function(req, res) {
 			User.find(function(err, users) {
 				if (err) return res.send(err);
-
+				console.log(err);
+				console.log(users);
 				// return the users
 				res.json(users);
 			})
